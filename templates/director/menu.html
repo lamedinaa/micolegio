@@ -1,0 +1,79 @@
+{% extends 'bases/tableros/scriptsBoard.html' %}
+{% load staticfiles %}
+
+{% block menuCss %}
+    <style media="screen">
+        .img-perfil {
+            width: 50%
+        }
+    </style>
+{% endblock %}
+
+{% block menu %}
+<div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown"> <span>
+                        <div class="img-perfil pull-right ">
+                            <img alt="Perfil" class="img-circle img-responsive" src="{% static 'img/profiles/default.jpg' %}" />
+                        </div>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{user.first_name}} {{user.last_name}}</strong>
+                        </span>
+
+                    </div>
+                </li>
+                <li id="registro">
+                    <a href=""><i class="fa fa-th-large"></i> <span class="nav-label">Registro</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li id="profesores"><a href="/director/insertprofesores/"><i class="fa fa-list"></i>Mis profes</a></li>
+                    </ul>
+                    <ul class="nav nav-second-level">
+                        <li id="padres"><a href="/director/insertpadres/"><i class="fa fa-list"></i>Registro Padres</a></li>
+                    </ul>
+                    <ul class="nav nav-second-level">
+                        <li id="estudiantes"><a href="/director/insertestudiantes/"><i class="fa fa-list"></i>Mi Equipo</a></li>
+                    </ul>
+                    <ul class="nav nav-second-level">
+                        <li id="staff"><a href="/director/insertstaff/"><i class="fa fa-list"></i>Mi staff</a></li>
+                    </ul>
+                </li>
+                <li id="tablero" >
+                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Mi escuela</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="dashboard_4_1.html">Mis selecciones</a></li>
+                        <li><a href="dashboard_4_1.html">Mis entrenadores</a></li>
+                        <li><a href="dashboard_4_1.html">Mi equipo</a></li>
+
+                    </ul>
+                </li>
+                <li id="informesEquipo" >
+                    <a href="index.html"><i class="fa fa-th-large"></i><span class="nav-label">Informes de mi equipo</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="dashboard_4_1.html">Actuales</a></li>
+                        <li><a href="dashboard_4_1.html">Cerradas</a></li>
+                    </ul>
+                </li>
+                <li id="compentencias" >
+                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Mis competencias</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="dashboard_4_1.html">Actuales</a></li>
+                        <li><a href="dashboard_4_1.html">Cerradas</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        {% block nav %}{% endblock %}
+        <br>
+        {% block tablero %} {% endblock %}
+    </div>
+</div>
+
+
+{% endblock %}
