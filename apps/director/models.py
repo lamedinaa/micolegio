@@ -41,4 +41,4 @@ class Alumnos(models.Model):
     imgAlumno= models.ImageField(upload_to = 'imgAlumno',blank = True,null = True)
 
     def __str__(self):
-        return "%s %s"%(self.nombre,self.apellidos)
+        return "%s %s"%(self.nombres,self.apellidos)

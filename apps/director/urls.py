@@ -3,7 +3,9 @@ from apps.director.views import *
 
 
 urlpatterns = [
-    url(r'^home/$',homeDirector,name = "homedirectorUrls"),
+    url(r'^miequipo/$',miEquipo,name = "listaestudiantesUrls"),
+    url(r'^misentrenadores/$',misEntrenadores,name = "misEntrenadoresUrls"),
+    url(r'^misselecciones/$',misSelecciones,name = "misSeleccionesUrls"),
     url(r'^insertprofesores/$',insertProfesores, name = "insertprofesores"),
     url(r'^insertpadres/$',insertPadres,name = "insertpadresUrl"),
     url(r'^insertestudiantes/$',insertEstudiantes,name = "insertestudiantesUrl"),

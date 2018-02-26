@@ -8,8 +8,19 @@ from django.db.models import Q
 
 
 @login_required
-def homeDirector(request):
-    return render(request,'director/home.html',{"active":{1:"tablero",2:"home"}} )
+def miEquipo(request):
+    escuela = request.user.perfil.escuela.all()[0]
+    alumnos = Alumnos.objects.filter(escuela = escuela)
+    return render(request,'director/miEquipo.html',{
+    "active":{1:"tablero",2:"miEquipo"},
+    "alumnos":alumnos,
+    } )
+
+def misSelecciones(request):
+    return render(request,'director/misSelecciones.html',{'active':{1:"tablero",2:"misSelecciones"}})
+
+def misEntrenadores(request):
+    return render(request,'director/misEntrenadores.html',{'active':{1:'tablero',2:'misEntrenadores'}})
 
 @login_required
 def insertProfesores(request):
