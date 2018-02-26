@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'^insertstaff/$',insertStaff,name = "insertstaffUrl"),
     # peticiones AJAX
     url(r'^insertusersform/$',insertFormUsers,name = "insertFormUsersUrls"),
+    url(r'^insertestudianteform/$',insertFormEstudiantes,name = "insertformestudianteUrl"),
     url(r'^validaruser/$',validarUser,name = "validaruserUrl"),
 ]

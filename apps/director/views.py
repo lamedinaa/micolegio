@@ -46,7 +46,6 @@ def validarUser(request):
 
 @login_required
 def insertFormUsers(request):
-    print "insert usuarios..."
     if request.FILES:
         u = request.FILES['imgUser'].name.split(".")[1]
         extension = u.encode('ascii','ignore')
