@@ -14,8 +14,38 @@
             </div>
         </div>
         <div class="ibox-content">
-           {{alumnos}}
+          {{user}}
+           <table class="table table-bordered">
+               <thead>
+                   <tr>
+                       <th>Nombre</th>
+                       <th>Apellidos</th>
+                       <th>No.Doc</th>
+                       <th>Fecha de nacimiento</th>
+                       <th>Envío código QR</th>
+                       <th>Acciones</th>
+                   </tr>
+               </thead>
+               <tbody>
+                   {% for alumno in alumnos %}
+                   <tr>
+                      <td>{{alumno.nombres}}</td>
+                      <td>{{alumno.apellidos}}</td>
+                      <td>{{alumno.numDocumento}}</td>
+                      <td>{{alumno.fechaNacimiento}}</td>
+                      <td>
+                          <a  class="btn btn-primary" href="/lista/{% for escuela in user.perfil.escuela.all %}{{escuela.id}}{% endfor %}/{{alumno.numDocumento}}/{{alumno.id}}/" target="_blank"><i class="fa fa-hdd-o"></i>&nbsp Generar</a>
+                          <a  class="btn btn-primary" href="/lista/{% for escuela in user.perfil.escuela.all %}{{escuela.id}}{% endfor %}/{{alumno.numDocumento}}/{{alumno.id}}/" target="_blank"><i class="fa fa-send"></i>&nbsp Enviar</a>
 
+                      </td>
+                      <td>
+                          <li class="fa fa-edit"></li>
+                          <li class="fa fa-trash"></li>
+                      </td>
+                   </tr>
+                   {% endfor %}
+               </tbody>
+           </table>
         </div>
     </div>
 {% endblock %}
