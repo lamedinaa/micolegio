@@ -14,7 +14,6 @@
             </div>
         </div>
         <div class="ibox-content">
-          {{user}}
            <table class="table table-bordered">
                <thead>
                    <tr>
@@ -34,9 +33,8 @@
                       <td>{{alumno.numDocumento}}</td>
                       <td>{{alumno.fechaNacimiento}}</td>
                       <td>
-                          <a  class="btn btn-primary" href="/lista/{% for escuela in user.perfil.escuela.all %}{{escuela.id}}{% endfor %}/{{alumno.numDocumento}}/{{alumno.id}}/" target="_blank"><i class="fa fa-hdd-o"></i>&nbsp Generar</a>
-                          <a  class="btn btn-primary" href="/lista/{% for escuela in user.perfil.escuela.all %}{{escuela.id}}{% endfor %}/{{alumno.numDocumento}}/{{alumno.id}}/" target="_blank"><i class="fa fa-send"></i>&nbsp Enviar</a>
-
+                          <a  class="btn btn-primary" href="/director/generarqr/{{alumno.numDocumento}}/{{alumno.id}}/" target="_blank"><i class="fa fa-hdd-o"></i>&nbsp Generar</a>
+                          <a  class="btn btn-primary" href="/director/enviarqr/{{alumno.numDocumento}}/{{alumno.id}}/" target="_blank"><i class="fa fa-send"></i>&nbsp Enviar</a>
                       </td>
                       <td>
                           <li class="fa fa-edit"></li>

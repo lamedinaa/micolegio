@@ -6,6 +6,12 @@ from apps.director.forms import *
 from django.db import transaction,IntegrityError
 from django.db.models import Q
 
+@login_required
+def generarQR(request,id_alumno,documento_alumno):
+    return render(request,'director/codigoQR.html',{
+    "idAlumno":id_alumno,
+    "documentoAlumno":documento_alumno,
+    })
 
 @login_required
 def miEquipo(request):
