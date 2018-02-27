@@ -36,8 +36,9 @@
         var active = {{active|safe}};
         $('#'+active[1]).addClass("active");
         $('#'+active[2]).addClass("active");
-
+        ///////
         $(document).ready(function() {
+
             setTimeout(function() {
                 toastr.options = {
                     closeButton: true,
@@ -45,11 +46,10 @@
                     showMethod: 'slideDown',
                     timeOut: 4000
                 };
-                // toastr.success('Falta cuadra esto !!!', '');
 
             }, 1300);
 
-        });
+         });
     </script>
 
     <!-- <script src="{% static 'js/plugins/flot/jquery.flot.js' %}"></script> -->
