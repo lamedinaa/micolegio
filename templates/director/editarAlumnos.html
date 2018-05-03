@@ -29,15 +29,15 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2">Apellidos:</label>
                     <div class="col-sm-7">
-                        <input type="text" value='{{alumnos.apellidos}}' id="apellidos" name="apellidos" class="form-control" placeholder="Apellidos" required>
+                        <input type="text" value='{{alumno.apellidos}}' id="apellidos" name="apellidos" class="form-control" placeholder="Apellidos" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2">Padres: {{padres}}</label>
+                    <label class="control-label col-sm-2">Padres:</label>
                     <div class="col-sm-7">
-                        <select class="form-control" name="padresId" id="selectPadres"  multiple="multiple">
-                            {% for padre in padres %}
-                                <option value="{{padre.user.id}}">{{padre.user.first_name}} {{padre.user.last_name}} {{padre.user.email}}</option>
+                        <select class="form-control"  name="padresId" id="selectPadres"  multiple="multiple">
+                            {% for padre in alumno.padres.all %}
+                                <option value="{{padre.id}}" selected="">{{padre.first_name}} {{padre.last_name}} {{padre.email}}</option>
                             {% endfor %}
                        </select>
 
@@ -47,19 +47,19 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2">Número de documento:</label>
                     <div class="col-sm-7">
-                        <input type="text" id="numDocumento" name="numDocumento"class="form-control" placeholder="Número de documento" required>
+                        <input type="text" value='{{alumno.numDocumento}}' id="numDocumento" name="numDocumento"class="form-control" placeholder="Número de documento" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2">Correo electrónico:</label>
                     <div class="col-sm-7">
-                        <input type="text" id="email" name="email"class="form-control" placeholder="correo electrónico" required>
+                        <input type="text" value="{{alumno.email}}" id="email" name="email"class="form-control" placeholder="correo electrónico" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2">Fecha de nacimiento:</label>
                     <div class="col-sm-7">
-                        <input type="text" class="form-control" name="fechaNacimiento" id="fechaNacimiento" placeholder="mm/dd/yy" required>
+                        <input type="text" value="{{alumno.fechaNacimiento}}" class="form-control" name="fechaNacimiento" id="fechaNacimiento" placeholder="mm/dd/yy" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -83,10 +83,55 @@
 
 {% block scriptsFile %}
     <script type="text/javascript">
-        $(document).ready(function(){
-            $("#selectPadres").select2();
-            $("#fechaNacimiento").datepicker();
-        })
+
+            $(document).ready(function(){
+                $("#selectPadres").select2();
+                $("#fechaNacimiento").datepicker();
+            })
+
+            ////verificación de único email
+            $("#email").change(function(){
+                var email = $(this).val();
+                $.ajax({
+                    url: '/director/validaruser/',
+                    data: {'email':email},
+                    dataType: 'json',
+                    success: function(datos) {
+                        if(datos['validacion']){
+                            toastr["error"]("Correo electrónico ya registrado");
+                        }else {
+                            $("#username").val($("#email").val());
+                        }
+                    },
+                })
+            })
+
+
+           /////formulario
+           $("#form").submit(function(event) {
+               event.preventDefault();
+               console.log("get: ");
+               console.log($("#form").get(0));
+               var data1 = new FormData($("#form").get(0));
+               console.log(data1);
+
+               $.ajax({
+                 url: '/director/editarestudianteform/',
+                 type: 'POST',
+                 data: data1,
+                 dataType: 'json',
+                 success: function(datos) {
+                     toastr.succes(datos.msj,'');
+                 },error:function(xhr,errmsg,err) {
+                     console.log(xhr);
+                     console.log(errmsg);
+                     console.log(err);
+                     toasts["error"]("Ha ocurrido un error lo sentimos!");
+                 }
+               })
+
+
+           })
 
     </script>
 

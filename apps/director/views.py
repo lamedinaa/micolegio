@@ -6,15 +6,11 @@ from apps.director.forms import *
 from django.db import transaction,IntegrityError
 from django.db.models import Q
 
-
-
 @login_required
 def editarAlumno(request,id_alumno):
     alumno = Alumnos.objects.get(id = id_alumno)
-    padres = alumno.padres.all()
     return render(request,'director/editarAlumnos.html',{
     "alumno":alumno,
-    "padres":padres,
     "active":{1:"tablero",2:"miEquipo"}
     })
 
@@ -123,3 +119,31 @@ def insertFormEstudiantes(request):
             pass
     data = {"msj":"registro exitoso"}
     return JsonResponse(data)
+
+
+@login_required
+def editarEstudianteForm(request):
+        if request.FILES:
+            u = request.FILES['imgEstudiante'].name.split(".")[1]
+            extension = u.encode('ascii','ignore')
+            lastAlumnoId = str(Alumnos.objects.latest("id").id + 1)
+            request.FILES["imgEstudiante"].name= lastAlumnoId +"."+ extension
+        alumnos_form = AlumnosForm(request.POST,request.FILES)
+        if alumnos_form.is_valid():
+            try:
+                with transaction.atomic():
+                    escuela = request.user.perfil.escuela.all()[0]
+                    listaPadres = request.POST.getlist("padresId")
+                    query = Q()
+                    for padre in listaPadres:
+                        query  = query|Q(id = int(padre))
+                    padresObj = User.objects.filter(query)
+                    alumno = alumnos_form.save()
+                    alumno.escuela.add(escuela)
+                    for padre in padresObj:
+                        alumno.padres.add(padre)
+                    alumno.save()
+            except:
+                pass
+        data = {"msj":"registro exitoso"}
+        return JsonResponse(data)
