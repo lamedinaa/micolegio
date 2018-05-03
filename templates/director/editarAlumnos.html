@@ -1,0 +1,93 @@
+{% extends 'director/nav.html' %}
+
+
+
+{% block tablero %}
+<div class="z-depth-2">
+    <div class="ibox-title">
+        <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <h2><strong>Alumno  {{alumno}}</strong></h2>
+            </div>
+        </div>
+    </div>
+    <div class="ibox-content">
+        <br>
+
+        <div class="tab-content">
+          <div id="" class="tab-pane fade in active">
+            <br>
+            <br>
+            <form class="form-horizontal" id="form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="email">Nombres:</label>
+                    <div class="col-sm-7">
+                      <input type="text" value='{{alumno.nombres}}' name="nombres" id="nombres" class="form-control"  placeholder="Nombres" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Apellidos:</label>
+                    <div class="col-sm-7">
+                        <input type="text" value='{{alumnos.apellidos}}' id="apellidos" name="apellidos" class="form-control" placeholder="Apellidos" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Padres: {{padres}}</label>
+                    <div class="col-sm-7">
+                        <select class="form-control" name="padresId" id="selectPadres"  multiple="multiple">
+                            {% for padre in padres %}
+                                <option value="{{padre.user.id}}">{{padre.user.first_name}} {{padre.user.last_name}} {{padre.user.email}}</option>
+                            {% endfor %}
+                       </select>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Número de documento:</label>
+                    <div class="col-sm-7">
+                        <input type="text" id="numDocumento" name="numDocumento"class="form-control" placeholder="Número de documento" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Correo electrónico:</label>
+                    <div class="col-sm-7">
+                        <input type="text" id="email" name="email"class="form-control" placeholder="correo electrónico" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Fecha de nacimiento:</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" name="fechaNacimiento" id="fechaNacimiento" placeholder="mm/dd/yy" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Foto de perfil:</label>
+                    <div class="col-sm-7">
+                        <input type="file" name='imgEstudiante' id="imgUser" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                        <div class="col-sm-7">
+                            <input type="submit"  class="btn btn-primary pull-right" value="Registrar" >
+                        </div>
+                </div>
+
+            </form>
+          </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scriptsFile %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#selectPadres").select2();
+            $("#fechaNacimiento").datepicker();
+        })
+
+    </script>
+
+{% endblock %}

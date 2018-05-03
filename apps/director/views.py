@@ -6,6 +6,18 @@ from apps.director.forms import *
 from django.db import transaction,IntegrityError
 from django.db.models import Q
 
+
+
+@login_required
+def editarAlumno(request,id_alumno):
+    alumno = Alumnos.objects.get(id = id_alumno)
+    padres = alumno.padres.all()
+    return render(request,'director/editarAlumnos.html',{
+    "alumno":alumno,
+    "padres":padres,
+    "active":{1:"tablero",2:"miEquipo"}
+    })
+
 @login_required
 def generarQR(request,id_alumno,documento_alumno):
     return render(request,'director/codigoQR.html',{

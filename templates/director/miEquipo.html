@@ -37,8 +37,8 @@
                           <a  class="btn btn-primary" href="/director/enviarqr/{{alumno.numDocumento}}/{{alumno.id}}/" target="_blank"><i class="fa fa-send"></i>&nbsp Enviar</a>
                       </td>
                       <td>
-                          <li class="fa fa-edit"></li>
-                          <li class="fa fa-trash"></li>
+                           <a href="/director/editaralumno/{{alumno.id}}"><li class="fa fa-edit"></li></a>
+                           <a href="/director/desacativaralumno/{{alumnos.id}}"><li class="fa fa-trash"></li></a>
                       </td>
                    </tr>
                    {% endfor %}

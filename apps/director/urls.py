@@ -15,4 +15,5 @@ urlpatterns = [
     url(r'^insertusersform/$',insertFormUsers,name = "insertFormUsersUrls"),
     url(r'^insertestudianteform/$',insertFormEstudiantes,name = "insertformestudianteUrl"),
     url(r'^validaruser/$',validarUser,name = "validaruserUrl"),
+    url(r'^editaralumno/(?P<id_alumno>\d+)',editarAlumno, name = "editarAlumnoUrl"),
 ]
