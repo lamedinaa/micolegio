@@ -1,0 +1,131 @@
+Help on ImageFieldFile in module django.db.models.fields.files object:
+
+class IImmaaggeeFFiieellddFFiillee(django.core.files.images.ImageFile, FieldFile)
+ |  Method resolution order:
+ |      ImageFieldFile
+ |      django.core.files.images.ImageFile
+ |      FieldFile
+ |      django.core.files.base.File
+ |      django.core.files.utils.FileProxyMixin
+ |      __builtin__.object
+ |  
+ |  Methods defined here:
+ |  
+ |  ddeelleettee(self, save=True)
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors inherited from django.core.files.images.ImageFile:
+ |  
+ |  hheeiigghhtt
+ |  
+ |  wwiiddtthh
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from FieldFile:
+ |  
+ |  ____eeqq____(self, other)
+ |  
+ |  ____ggeettssttaattee____(self)
+ |  
+ |  ____hhaasshh____(self)
+ |  
+ |  ____iinniitt____(self, instance, field, name)
+ |  
+ |  ____nnee____(self, other)
+ |  
+ |  cclloossee(self)
+ |  
+ |  ooppeenn(self, mode='rb')
+ |  
+ |  ssaavvee(self, name, content, save=True)
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors inherited from FieldFile:
+ |  
+ |  cclloosseedd
+ |  
+ |  ffiillee
+ |  
+ |  ppaatthh
+ |  
+ |  ssiizzee
+ |  
+ |  uurrll
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from django.core.files.base.File:
+ |  
+ |  ____bbooooll____(self)
+ |  
+ |  ____eenntteerr____(self)
+ |  
+ |  ____eexxiitt____(self, exc_type, exc_value, tb)
+ |  
+ |  ____iitteerr____(self)
+ |  
+ |  ____lleenn____(self)
+ |  
+ |  ____nnoonnzzeerroo____(self)
+ |  
+ |  ____rreepprr____(self)
+ |  
+ |  ____ssttrr____ lambda self
+ |  
+ |  ____uunniiccooddee____ = __str__(self)
+ |  
+ |  cchhuunnkkss(self, chunk_size=None)
+ |      Read the file and yield chunks of ``chunk_size`` bytes (defaults to
+ |      ``UploadedFile.DEFAULT_CHUNK_SIZE``).
+ |  
+ |  mmuullttiippllee__cchhuunnkkss(self, chunk_size=None)
+ |      Returns ``True`` if you can expect multiple chunks.
+ |      
+ |      NB: If a particular file representation is in memory, subclasses should
+ |      always return ``False`` -- there's no good reason to read from memory in
+ |      chunks.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes inherited from django.core.files.base.File:
+ |  
+ |  DDEEFFAAUULLTT__CCHHUUNNKK__SSIIZZEE = 65536
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors inherited from django.core.files.utils.FileProxyMixin:
+ |  
+ |  ____ddiicctt____
+ |      dictionary for instance variables (if defined)
+ |  
+ |  ____wweeaakkrreeff____
+ |      list of weak references to the object (if defined)
+ |  
+ |  eennccooddiinngg
+ |  
+ |  ffiilleennoo
+ |  
+ |  fflluusshh
+ |  
+ |  iissaattttyy
+ |  
+ |  nneewwlliinneess
+ |  
+ |  rreeaadd
+ |  
+ |  rreeaaddiinnttoo
+ |  
+ |  rreeaaddlliinnee
+ |  
+ |  rreeaaddlliinneess
+ |  
+ |  sseeeekk
+ |  
+ |  ssooffttssppaaccee
+ |  
+ |  tteellll
+ |  
+ |  ttrruunnccaattee
+ |  
+ |  wwrriittee
+ |  
+ |  wwrriitteelliinneess
+ |  
+ |  xxrreeaaddlliinneess

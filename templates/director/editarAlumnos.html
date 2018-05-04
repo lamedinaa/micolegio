@@ -20,6 +20,7 @@
             <br>
             <form class="form-horizontal" id="form" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
+                <input type="hidden" name="id_alumno" value="{{alumno.id}}">
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="email">Nombres:</label>
                     <div class="col-sm-7">
@@ -119,9 +120,12 @@
                  url: '/director/editarestudianteform/',
                  type: 'POST',
                  data: data1,
+                 processData:false,
+                 contentType:false,
+                 cache:false,
                  dataType: 'json',
                  success: function(datos) {
-                     toastr.succes(datos.msj,'');
+                     toastr.success(datos.msj,'');
                  },error:function(xhr,errmsg,err) {
                      console.log(xhr);
                      console.log(errmsg);
