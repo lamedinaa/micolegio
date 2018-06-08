@@ -1,25 +1,68 @@
 {% extends 'bases/index/baseScripts.html' %}
+{% load staticfiles %}
 
+{% block css %}
+  <style media="screen">
+    #contenedor {
+				margin-top: 12%;
+			}
+    body  {
+      background: url("{% static 'img/camerino1.jpg' %}") 50% 0 no-repeat;
+      background-color: #fff!important;
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+			overflow: hidden
+    }
+    .marca {
+				color: #fff;
+				font-size: 34px;
+				background: #0b243b;
+				border-radius: 5px 5px 5px 5px;
+				font-size: 22px;
+				text-align: center;
+			}
+  </style>
+{% endblock %}
 
 {% block body %}
-<br><br><br>
 
-<div class="container">
-    <form  method="post">{% csrf_token %}
-        <div class="form-group">
-            <label for="usuario">Usuario:</label>
-            <input type="text" name="username" class="form-control" id="usuario" >
-        </div>
-        <div class="form-group">
-            <label for="password">Contraseña:</label>
-            <input type="password"  name="password" class="form-control" id="password">
-        </div>
-        <div class="form-group">
-            <label for="password"></label>
-             <button type="submit" class="btn btn-primary pull-right">Ingresar</button>
-        </div>
+
+<div class="animated fadeInDown">
+			<div id="contenedor" class="row">
+				<div class="col-lg-4 col-md-3 col-sm-2 col-xs-1"></div>
+				<div class="col-lg-4 col-md-6 col-sm-8 col-xs-10 marca">
+					<div>
+						<p id='nombre'>
+							<h2><strong>Bienvenido</strong></h2>
+						</p>
+					</div>
+				</div>
+</div>
+<br>
+<div class="row">
+  <div class="col-lg-4 col-md-3 col-sm-2 col-xs-1"></div>
+  <div class="col-lg-4 col-md-6 col-sm-8 col-xs-10">
+    <form class="m-t" method="post">{% csrf_token %}
+      <div class="form-group">
+        <input name="username" title="El correo es obligatorio" type="email" class="form-control" placeholder="Correo electrónico" required maxlength="300" minlength="8">
+      </div>
+      <div class="form-group">
+        <input name="password" title="Contraseña mínimo de 8 carácteres" type="password" class="form-control" placeholder="Contraseña" required maxlength="255" minlength="8">
+      </div>
+
+      <div id="captcha"></div>
+
+      <button id="btn_submit" type="submit" class="btn btn-primary block full-width m-b active">Ingresar</button>
+
+      <p class="text-muted text-center">
+        <a id="recuperar" href="/recuperar/" class="white"></a>
+      </p>
     </form>
     <h4>{{msjAuth}}</h4>
+  </div>
 </div>
+
 
 {% endblock %}
