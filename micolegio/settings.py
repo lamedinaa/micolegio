@@ -25,6 +25,8 @@ SECRET_KEY = 'qnl2@24y2=w_!f%-z#j2)anglfy*=&+3v&*b4k(iaa4k=6%_yf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
+# ALLOWED_HOSTS = ['52.39.164.228','www.cigreenmetalnomina.com']
 ALLOWED_HOSTS = []
 
 
@@ -79,28 +81,28 @@ CACHE_BACKEND = 'simple://'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#        'NAME': 'miColegio',
-#        'USER': 'postgres',
-#        'PASSWORD': '80777727',
-#        'HOST': '127.0.0.1',
-#        'PORT': 5432,
-#    }
-#}
-
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'miColegio',
-        'USER': 'alejandro',
-        'PASSWORD': 'Martin80777727',
-        'HOST': '127.0.0.1',
-        'PORT': '',
-    }
+   'default': {
+       'ENGINE': 'django.db.backends.postgresql_psycopg2',
+       'NAME': 'miColegio',
+       'USER': 'postgres',
+       'PASSWORD': '80777727',
+       'HOST': '127.0.0.1',
+       'PORT': 5432,
+   }
 }
+
+##ec2
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'miColegio',
+#         'USER': 'alejandro',
+#         'PASSWORD': 'Martin80777727',
+#         'HOST': '127.0.0.1',
+#         'PORT': '',
+#     }
+# }
 
 
 
@@ -130,3 +132,11 @@ STATIC_ROOT = os.path.join(BASE_DIR,'static')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR,'staticfiles'),
 )
+
+#ec2
+# STATIC_URL = '/staticfiles/'
+# STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+#
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR,'staticfiles'),
+# )
