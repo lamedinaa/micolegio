@@ -10,14 +10,12 @@
         <ul class="nav navbar-top-links navbar-right">
             <li>
                 <span class="m-r-sm ">
-                    {% for colegio in user.perfil.escuela.all %}
-                       <strong>{{ colegio.nombre}}</strong>
-                    {% endfor %}
+                    <a href="/director/inicio" ><button  class="btn btn-danger" type="button">Inicio</button> </a>
                 </span>
             </li>
             <li>
                 <a href="/logout/">
-                    <i class="fa fa-sign-out"></i> <strong>SALIR</strong>
+                     <strong>SALIR <i class="fas fa-door-open"></i></strong>
                 </a>
             </li>
         </ul>

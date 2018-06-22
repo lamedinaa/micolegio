@@ -17,9 +17,9 @@ def loginview(request):
             print "verificacion "
             print user.perfil.perfil
             if user.perfil.perfil == 0:
-                return HttpResponseRedirect('/director/miequipo/')
+                return HttpResponseRedirect('/director/inicio/')
             elif user.perfil.perfil == 1:
-                return HttpResponseRedirect('/director/miequipo/')
+                return HttpResponseRedirect('/director/inicio/')
             else:
                 msjAuth = "Usuario sin asignar perfil"
         else:

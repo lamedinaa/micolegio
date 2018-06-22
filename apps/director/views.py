@@ -7,6 +7,13 @@ from django.db import transaction,IntegrityError
 from django.db.models import Q
 import os
 
+
+@login_required
+def inicio(request):
+    return render(request,'director/inicio.html',{
+    "active":{1:"home",2:"inicio"}
+    })
+
 @login_required
 def editarAlumno(request,id_alumno):
     alumno = Alumnos.objects.get(id = id_alumno)
@@ -36,6 +43,9 @@ def misSelecciones(request):
 
 def misEntrenadores(request):
     return render(request,'director/misEntrenadores.html',{'active':{1:'tablero',2:'misEntrenadores'}})
+
+def listaPadres(request):
+    return render(request,'director/listaPadres.html',{'active':{1:'tablero',2:'listapadres'}})
 
 @login_required
 def insertProfesores(request):

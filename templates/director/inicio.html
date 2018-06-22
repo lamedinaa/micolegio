@@ -1,0 +1,154 @@
+{% extends 'director/nav.html' %}
+
+{% block title %} Inicio {% endblock %}
+
+{% block tablero %}
+<div class="z-depth-2">
+    <div class="ibox-title">
+        <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <h2><strong>Inicio</strong></h2>
+            </div>
+        </div>
+    </div>
+    <div class="ibox-content">
+        <div class="row">
+          <div class="col-lg-3">
+                  <div class="widget-head-color-box navy-bg p-lg text-center">
+                      <div class="m-b-md">
+                      <h2 class="font-bold no-margins">
+                          Mi Escuela
+                      </h2>
+                          <br>
+                          <i class="fas fa-football-ball fa-4x"></i>
+                      </div>
+                      <!-- <img src="img/a4.jpg" class="img-circle circle-border m-b-md" alt="profile"> -->
+                      <div>
+                      </div>
+                  </div>
+                  <div class="widget-text-box">
+                      <div class="text-center">
+                          <a class="btn btn-xs" href="/director/miequipo/"><strong> <i class="fa fa-eye"></i> Mi equipo </strong> </a>
+                      </div>
+                      <br>
+                      <div class="text-center">
+                        <a class="btn btn-xs" href="/director/misselecciones/"> <strong> <i class="fa fa-eye"></i> Mis selecciones  </strong> </a>
+                      </div>
+                      <br>
+                      <div class="text-center">
+                        <a class="btn btn-xs" href="/director/misentrenadores/"><strong><i class="fa fa-eye"></i> Mis entrenadores</strong> </a>
+                      </div>
+                      <br>
+                      <div class="text-center">
+                        <a class="btn btn-xs" href="/director/listapadres/"><strong><i class="fa fa-eye"></i>Padres</strong> </a>
+                      </div>
+                      <br>
+                      <br>
+
+                      <!-- <div class="text-center">
+                        <a class="btn btn-xs"> <strong> <i class="fa fa-eye"></i> Mi staff</strong>  </a>
+                      </div> -->
+                  </div>
+          </div>
+          <div class="col-lg-3">
+                  <div class="widget-head-color-box yellow-bg p-lg text-center">
+                      <div class="m-b-md">
+                      <h2 class="font-bold no-margins">
+                          Informes de mi equipo
+                      </h2>
+                            <br>
+                            <i class="fas fa-dumbbell fa-4x"></i>
+                      </div>
+                      <!-- <img src="img/a4.jpg" class="img-circle circle-border m-b-md" alt="profile"> -->
+                      <div>
+
+                      </div>
+                  </div>
+                  <div class="widget-text-box">
+                      <div class="text-center">
+                          <a class="btn btn-xs "><strong> <i class="fa fa-eye"></i> Actuales </strong> </a>
+                      </div>
+                      <br>
+                      <div class="text-center">
+                        <a class="btn btn-xs"> <strong> <i class="fa fa-eye"></i> Cerradas </strong> </a>
+                      </div>
+                      <br>
+                      <!-- <div class="text-center">
+                        <a class="btn btn-xs"><strong><i class="fa fa-eye"></i> Mi equipo</strong> </a>
+                      </div>
+                      <br>
+                      <div class="text-center">
+                        <a class="btn btn-xs"> <strong> <i class="fa fa-eye"></i> Mi staff</strong>  </a>
+                      </div> -->
+                  </div>
+          </div>
+          <div class="col-lg-3">
+                  <div class="widget-head-color-box navy-bg p-lg text-center">
+                      <div class="m-b-md">
+                      <h2 class="font-bold no-margins">
+                          Mis competencias
+                      </h2>
+                            <br>
+                            <i class="fas fa-table-tennis fa-4x"></i>
+                      </div>
+                      <!-- <img src="img/a4.jpg" class="img-circle circle-border m-b-md" alt="profile"> -->
+                      <div>
+                      </div>
+                  </div>
+                  <div class="widget-text-box">
+                      <div class="text-center">
+                          <a class="btn btn-xs "><strong> <i class="fa fa-eye"></i> Actuales </strong> </a>
+                      </div>
+                      <br>
+                      <div class="text-center">
+                        <a class="btn btn-xs"> <strong> <i class="fa fa-eye"></i> Cerradas  </strong> </a>
+                      </div>
+                      <br>
+                      <!-- <div class="text-center">
+                        <a class="btn btn-xs"><strong><i class="fa fa-eye"></i> Mi equipo</strong> </a>
+                      </div>
+                      <br>
+                      <div class="text-center">
+                        <a class="btn btn-xs"> <strong> <i class="fa fa-eye"></i> Mi staff</strong>  </a>
+                      </div> -->
+                  </div>
+          </div>
+          <div class="col-lg-3">
+                  <div class="widget-head-color-box yellow-bg p-lg text-center">
+                      <div class="m-b-md">
+                      <h2 class="font-bold no-margins">
+                          Registros
+                      </h2>
+                        <br>
+                        <i class="fas fa-futbol fa-4x"></i>
+                      </div>
+                      <!-- <img src="img/a4.jpg" class="img-circle circle-border m-b-md" alt="profile"> -->
+                      <div>
+                          <!-- <span>100 Tweets</span>
+                          <span>350 Following</span>
+                          <span>610 Followers</span> -->
+                      </div>
+                  </div>
+                  <div class="widget-text-box">
+                      <div class="text-center">
+                          <a href="/director/insertprofesores/" class="btn btn-xs "><strong> <i class="fa fa-eye"></i> Registro profes </strong> </a>
+                      </div>
+                      <br>
+                      <div class="text-center">
+                        <a  href="/director/insertpadres/" class="btn btn-xs"> <strong> <i class="fa fa-eye"></i> Registro padres  </strong> </a>
+                      </div>
+                      <br>
+                      <div class="text-center">
+                        <a href="/director/insertestudiantes/" class="btn btn-xs"><strong><i class="fa fa-eye"></i> Registro mi equipo</strong> </a>
+                      </div>
+                      <br>
+                      <div class="text-center">
+                        <a  href="/director/insertstaff/" class="btn btn-xs"> <strong> <i class="fa fa-eye"></i> Registro staff</strong>  </a>
+                      </div>
+
+                  </div>
+          </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
