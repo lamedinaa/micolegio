@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^insertpadres/$',insertPadres,name = "insertpadresUrl"),
     url(r'^insertestudiantes/$',insertEstudiantes,name = "insertestudiantesUrl"),
     url(r'^insertstaff/$',insertStaff,name = "insertstaffUrl"),
+    url(r'^insertseleccion/$',insertSeleccion,name="insertSeleccionUrl"),
     url(r'^generarqr/(?P<documento_alumno>\d+)/(?P<id_alumno>\d+)/$',generarQR,name="generarQrUrls"),
     # peticiones AJAX
     url(r'^insertusersform/$',insertFormUsers,name = "insertFormUsersUrls"),

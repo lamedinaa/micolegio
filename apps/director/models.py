@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 
+
+
+
 class Colegio(models.Model):
     nombre = models.CharField(max_length = 50)
     direccion = models.CharField(max_length = 50, null = True, blank = True )
@@ -42,3 +45,12 @@ class Alumnos(models.Model):
 
     def __str__(self):
         return "%s %s"%(self.nombres,self.apellidos)
+
+
+class Seleccion(models.Model):
+    nombre = models.CharField(max_length = 50)
+    alumnos = models.ManyToManyField(Alumnos,blank = True)
+    profesor = models.ForeignKey(User)
+
+    def __str__(self):
+        return "%s"%self.nombre

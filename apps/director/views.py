@@ -42,31 +42,50 @@ def misSelecciones(request):
     return render(request,'director/misSelecciones.html',{'active':{1:"tablero",2:"misSelecciones"}})
 
 def misEntrenadores(request):
-    return render(request,'director/misEntrenadores.html',{'active':{1:'tablero',2:'misEntrenadores'}})
+    escuela = request.user.perfil.escuela.all()[0]
+    entrenadores = User.objects.select_related().filter(perfil__perfil = 2,perfil__escuela = escuela)
+    return render(request,'director/misEntrenadores.html',{
+    'entrenadores': entrenadores,
+    'active':{1:'tablero',2:'misEntrenadores'}})
 
 def listaPadres(request):
-    return render(request,'director/listaPadres.html',{'active':{1:'tablero',2:'listapadres'}})
+    escuela = request.user.perfil.escuela.all()[0]
+    padres = User.objects.select_related().filter(perfil__perfil = 4,perfil__escuela = escuela)
+    return render(request,'director/listaPadres.html',{
+    'padres': padres,
+    'active':{1:'tablero',2:'listapadres'}})
 
 @login_required
 def insertProfesores(request):
+    """esta funcion solo es para renderizar, el insert de staff,padres,profes se insertan
+    la funcion  insertFormUsers pues todos son Users"""
     return render(request,'director/insertprofesores.html',{"active":{1:"registro",2:"profesores"}} )
 
 
 @login_required
 def insertPadres(request):
+    """esta funcion solo es para renderizar, el insert de staff,padres,profes se insertan
+    la funcion  insertFormUsers pues todos son Users"""
     return render(request,'director/insertpadres.html',{"active":{1:"registro",2:"padres"}} )
 
 @login_required
 def insertEstudiantes(request):
     colegio = request.user.perfil.escuela.all()[0]
-    padres = Perfil.objects.prefetch_related().filter(escuela = colegio)
+    padres = Perfil.objects.prefetch_related().filter(escuela = colegio, perfil = 4 )
     return render(request,'director/insertestudiantes.html',{
     "active":{1:"registro",2:"estudiantes"},
     "padres":padres,
     } )
 
+def insertSeleccion(request):
+    return render(request,'director/insertseleccion.html',{
+    "active":{1:"registro",2:"seleccion"}
+    })
+
 @login_required
 def insertStaff(request):
+    """esta funcion solo es para renderizar, el insert de staff,padres,profes se insertan
+    la funcion  insertFormUsers pues todos son Users"""
     return render(request,'director/insertstaff.html',{"active":{1:"registro",2:"staff"}} )
 
 @login_required
