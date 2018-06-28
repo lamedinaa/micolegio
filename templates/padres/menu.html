@@ -1,39 +1,76 @@
 {% extends 'bases/tableros/scriptsBoard.html' %}
+{% load staticfiles %}
+
+{% block menuCss %}
+    <style media="screen">
+        .img-perfil {
+            width: 50%
+        }
+    </style>
+{% endblock %}
 
 {% block menu %}
 <div id="wrapper">
     <nav class="navbar-default navbar-static-side" role="navigation">
         <div class="sidebar-collapse">
-            <ul class="nav metismenu" id="side-menu">
+            <ul class="nav" id="side-menu">
                 <li class="nav-header">
-                    <div class="dropdown profile-element"> <span>
-                        <img alt="image" class="img-circle" src="img/profile_small.jpg" />
-                         </span>
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">David Williams</strong>
-                         </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> </span> </a>
-                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            <li><a href="profile.html">Profile</a></li>
-                            <li><a href="contacts.html">Contacts</a></li>
-                            <li><a href="mailbox.html">Mailbox</a></li>
-                            <li class="divider"></li>
-                            <li><a href="login.html">Logout</a></li>
-                        </ul>
-                    </div>
-                    <div class="logo-element">
-                        IN+
+                    <div class="dropdown profile-element ">
+                      <span>
+                          {% for colegio in user.perfil.escuela.all %}
+                              <h3><strong  style="color:#FDFEFE;"> Escuela de alto rendimiento {{ colegio.nombre }} </strong></h3>
+                          {% endfor %}
+                      </span>
                     </div>
                 </li>
-                <li class="active">
-                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class="fa arrow"></span></a>
+                <li id="home">
+                    <a href=""><i class="fa fa-th-large"></i> <span class="nav-label">Home</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li class="active"><a href="index.html">Dashboard v.1</a></li>
-                        <li><a href="dashboard_2.html">Dashboard v.2</a></li>
-                        <li><a href="dashboard_3.html">Dashboard v.3</a></li>
-                        <li><a href="dashboard_4_1.html">Dashboard v.4</a></li>
-                        <li><a href="dashboard_5.html">Dashboard v.5 </a></li>
+                        <li id="inicio"><a href="/director/inicio/"><i class="fa fa-coffee"></i>Inicio</a></li>
                     </ul>
                 </li>
+                <li id="tablero" >
+                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Mi escuela</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li id="miEquipo"><a href="/director/miequipo/"><i class="fa fa-child"></i>Mi equipo</a></li>
+                        <li id="misSelecciones"><a href="/director/misselecciones/"><i class="fa fa-soccer-ball-o"></i>Mis selecciones</a></li>
+                        <li id="misEntrenadores"><a href="/director/misentrenadores/"><i class="fa fa-coffee"></i> Mis entrenadores</a></li>
+                        <li id="listapadres"><a href="/director/listapadres/"><i class="fa fa-coffee"></i> Padres </a></li>
+                    </ul>
+                </li>
+                <li id="compentencias" >
+                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Mis competencias</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="dashboard_4_1.html">Actuales</a></li>
+                        <li><a href="dashboard_4_1.html">Cerradas</a></li>
+                    </ul>
+                </li>
+                <li id="registro">
+                    <a href=""><i class="fa fa-th-large"></i> <span class="nav-label">Registros</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li id="seleccion"><a href="/director/insertseleccion/"><i class="fa fa-coffee"></i> Crear selección</a></li>
+                    </ul>
+                    <ul class="nav nav-second-level">
+                        <li id="profesores"><a href="/director/insertprofesores/"><i class="fa fa-coffee"></i> Registro profes</a></li>
+                    </ul>
+                    <ul class="nav nav-second-level">
+                        <li id="padres"><a href="/director/insertpadres/"><i class="fa fa-list"></i>Registro Padres</a></li>
+                    </ul>
+                    <ul class="nav nav-second-level">
+                        <li id="estudiantes"><a href="/director/insertestudiantes/"><i class="fa fa-child"></i>Registro equipo</a></li>
+                    </ul>
+                    <ul class="nav nav-second-level">
+                        <li id="staff"><a href="/director/insertstaff/"><i class="fa fa-group"></i>Registro staff</a></li>
+                    </ul>
+                </li>
+                <li id="tesoreria" >
+                    <a href="index.html"><i class="fa fa-th-large"></i><span class="nav-label">Tesoreía</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li id="listaPagos"><a href="/director/listapagos">Lista de pagos</a></li>
+                        <li id="asociarPagos"><a href="/director/asociarpagos">Asociar Pagos</a></li>
+                    </ul>
+                </li>
+
             </ul>
         </div>
     </nav>

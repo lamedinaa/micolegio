@@ -2,6 +2,9 @@
 
 {% block title %} Lista padres {% endblock %}
 
+{% block cssFile %}
+   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+{% endblock %}
 
 {% block tablero %}
 <div class="z-depth-2">
@@ -13,9 +16,38 @@
         </div>
     </div>
     <div class="ibox-content">
-      {{padres}}
-
+       <table class="display" id="tabla">
+         <thead>
+            <tr>
+              <th>Nombres</th>
+              <th>Número de documento</th>
+              <th>Email</th>
+              <th>Ver</th>
+              <th>Acciones</th>
+            </tr>
+         </thead>
+         <tbody>
+           {% for padre in padres %}
+            <tr>
+              <td>{{padre.first_name}}</td>
+              <td>{{padre.perfil.numDocumento}}</td>
+              <td>{{padre.email}}</td>
+              <td> <button class="btn btn-primary">Ver</button></td>
+              <td>
+                <a href="#"> <i class="fa fa-trash"></i> </a>
+                <a href="#"> <i class="fa fa-edit"></i> </a>
+              </td>
+            </tr>
+           {% endfor %}
+         </tbody>
+       </table>
     </div>
 </div>
+{% endblock %}
 
+{% block scriptsFile %}
+   <script type="text/javascript">
+     $('#tabla').DataTable();
+   </script>
+   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 {% endblock %}

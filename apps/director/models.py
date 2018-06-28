@@ -2,7 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 
-
+"""
+   1) un director solo puede tener una escuela    !crea conflitos pues en los views uso mucho este hecho!
+   2) una escuela puede tener varios directores
+"""
 
 
 class Colegio(models.Model):
@@ -42,6 +45,7 @@ class Alumnos(models.Model):
     email = models.EmailField()
     activo = models.BooleanField(default = True)
     imgAlumno= models.ImageField(upload_to = 'imgAlumno',blank = True,null = True)
+    keyQR = models.CharField(max_length= 128, null = True,blank = True)
 
     def __str__(self):
         return "%s %s"%(self.nombres,self.apellidos)
@@ -51,6 +55,7 @@ class Seleccion(models.Model):
     nombre = models.CharField(max_length = 50)
     alumnos = models.ManyToManyField(Alumnos,blank = True)
     profesor = models.ForeignKey(User)
+    escuela = models.ForeignKey(Colegio)
 
     def __str__(self):
         return "%s"%self.nombre

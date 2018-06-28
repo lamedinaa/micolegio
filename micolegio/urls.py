@@ -15,14 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from micolegio.views import index,loginview,logoutview
+from micolegio.views import index,loginview,logoutview,inicioAdmin
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$',index),
     url(r'^login/$',loginview),
     url(r'^logout/$',logoutview),
-    # url(r'^profesores/',include('apps.profesores.urls',namespace="profesores") ),
-    # url(r'^padres/',include('apps.padres.urls',namespace="padres") ),
-    url(r'^director/',include('apps.director.urls',namespace = "director")),
+    url(r'^admin/inicio/',inicioAdmin),
+    url(r'^director/',include('apps.director.urls',namespace = "director") ),
+    url(r'^profesores/',include('apps.profes.urls',namespace="profesores") ),
+    url(r'^padres/',include('apps.padres.urls',namespace="padres") ),
 ]

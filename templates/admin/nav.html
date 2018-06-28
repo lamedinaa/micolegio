@@ -1,0 +1,27 @@
+{% extends 'director/menu.html' %}
+
+{% block nav %}
+<!-- panel superior -->
+<div class="row border-bottom">
+    <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+    </div>
+        <ul class="nav navbar-top-links navbar-right">
+            <li>
+                <span class="m-r-sm ">
+                    <a href="/admin/inicio" ><button  class="btn btn-danger" type="button">Inicio</button> </a>
+                </span>
+            </li>
+            <li>
+                <a href="/logout/">
+                     <strong>SALIR <i class="fas fa-door-open"></i></strong>
+                </a>
+            </li>
+        </ul>
+
+    </nav>
+</div>
+<!-- fin panel superior -->
+
+{% endblock %}

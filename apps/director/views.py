@@ -1,11 +1,28 @@
+# -*- coding: utf-8 -*-
+import os
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from apps.director.forms import *
+from apps.director.models import *
 from django.db import transaction,IntegrityError
 from django.db.models import Q
-import os
+from mensajeria.correosfront import mail_codigoQR
+from django.core.mail import EmailMessage
+from micolegio.settings import EMAIL,KEY
+
+@login_required
+def asociarPagos(request):
+    return render(request,'director/asociarpagos.html',{
+    "active":{1:"tesoreria",2:"asociarPagos"}
+    })
+
+@login_required
+def listaPagos(request):
+    return render(request,'director/listapagos.html',{
+    "active":{1:"tesoreria",2:"listaPagos"}
+    })
 
 
 @login_required
@@ -22,12 +39,56 @@ def editarAlumno(request,id_alumno):
     "active":{1:"tablero",2:"miEquipo"}
     })
 
+
+def QRpublico(request,key,documento_alumno,id_alumno):
+    alumno = Alumnos.objects.get(id = id_alumno)
+    print key
+    print alumno.keyQR
+    if key == alumno.keyQR:
+        return render(request,'director/codigoQR.html',{
+        "idAlumno":id_alumno,
+        "documentoAlumno":documento_alumno,
+        })
+    return render(request,'front/error500.html',{})
+
 @login_required
-def generarQR(request,id_alumno,documento_alumno):
-    return render(request,'director/codigoQR.html',{
-    "idAlumno":id_alumno,
-    "documentoAlumno":documento_alumno,
-    })
+def generarQR(request,id_alumno,documento_alumno,envio):
+    if envio == "0":
+        return render(request,'director/codigoQR.html',{
+        "idAlumno":id_alumno,
+        "documentoAlumno":documento_alumno,
+        })
+    elif envio == "1":
+        emailfallidos = []
+        try:
+            key = KEY(64)
+            alumno = Alumnos.objects.select_related().get(id = id_alumno)
+            alumno.keyQR = key
+            padres = alumno.padres.all()
+            nombreEscuela = request.user.perfil.escuela.all()[0].nombre
+            asunto = "{0} código QR ".format(nombreEscuela)
+            alumno.save()
+            for padre in padres:
+                bodyEmail = mail_codigoQR(padre.first_name,alumno.nombres,id_alumno,documento_alumno,key)
+                email = EmailMessage(asunto,bodyEmail,EMAIL,[padre.email])
+                email.content_subtype = "html"
+                result = email.send()
+                if result == 0 :
+                    emailfallidos.append(padre.email)
+            if len(emailfallidos)>0:
+                datos = {"status":"error",
+                "msj":"error en un correo",
+                "fallos":emailfallidos
+                }
+            else:
+                datos = {"msj":"Email exitoso"}
+            return JsonResponse(datos)
+        except:
+            datos = {"status":"error",
+            "msj":"email fallido"
+            }
+            return JsonResponse(datos)
+
 
 @login_required
 def miEquipo(request):
@@ -39,7 +100,11 @@ def miEquipo(request):
     } )
 
 def misSelecciones(request):
-    return render(request,'director/misSelecciones.html',{'active':{1:"tablero",2:"misSelecciones"}})
+    escuela = request.user.perfil.escuela.all()[0]
+    selecciones = Seleccion.objects.filter(escuela = escuela)
+    return render(request,'director/misSelecciones.html',{
+    "selecciones":selecciones,
+    'active':{1:"tablero",2:"misSelecciones"}})
 
 def misEntrenadores(request):
     escuela = request.user.perfil.escuela.all()[0]
@@ -51,7 +116,7 @@ def misEntrenadores(request):
 def listaPadres(request):
     escuela = request.user.perfil.escuela.all()[0]
     padres = User.objects.select_related().filter(perfil__perfil = 4,perfil__escuela = escuela)
-    return render(request,'director/listaPadres.html',{
+    return render(request,'director/listapadres.html',{
     'padres': padres,
     'active':{1:'tablero',2:'listapadres'}})
 
@@ -78,7 +143,13 @@ def insertEstudiantes(request):
     } )
 
 def insertSeleccion(request):
+    escuela  = request.user.perfil.escuela.all()[0]
+    query = Q()
+    query = Q(perfil__perfil = 1)|Q(perfil__perfil = 2)
+    entrenadores = User.objects.filter(perfil__escuela = escuela).filter(query)
+    print entrenadores
     return render(request,'director/insertseleccion.html',{
+    "entrenadores": entrenadores,
     "active":{1:"registro",2:"seleccion"}
     })
 
@@ -98,6 +169,24 @@ def validarUser(request):
     print datos
     return JsonResponse(datos)
 
+
+@login_required
+def insertSeleccionForm(request):
+    if request.POST:
+        nombreSeleccion = request.POST['nombreseleccion']
+        entrenadorId = request.POST["entrenadorId"]
+        try:
+            with transaction.atomic():
+                print "entrenador"
+                entrenador = User.objects.get(id = int(entrenadorId))
+                print entrenador
+                seleccion = Seleccion(nombre = nombreSeleccion,profesor = entrenador)
+                seleccion.save()
+        except:
+            print "error en guardar"
+            passs
+    datos = {"msj":"registro exitoso"}
+    return JsonResponse(datos)
 
 @login_required
 def insertFormUsers(request):

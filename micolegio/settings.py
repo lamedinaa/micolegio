@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import binascii
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -40,8 +41,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.director',
+    # 'apps.profes',
     # 'apps.padres',
-    # 'apps.profesores',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -126,6 +127,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
+
+###############smtp amazon web service
+EMAIL = 'superadmin@phiaxioma.com'     ## Para pruebas webescuela@webescuela
+EMAIL_HOST = 'email-smtp.us-east-1.amazonaws.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'AKIAIA4GKMT32LP3WIYQ'
+EMAIL_HOST_PASSWORD =  'AkK2Dyd/LsScZQepp5WvsBWejpvFkAacZqaWumUmUzuI'
+EMAIL_USE_TLS = True
+
+####unica key
+def KEY(longitud):
+    return binascii.hexlify(os.urandom(longitud)).decode()
+
+
+###Settings para servidor local
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
 

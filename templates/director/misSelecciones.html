@@ -1,5 +1,10 @@
 {% extends 'director/nav.html' %}
 
+{% block cssFile %}
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+{% endblock %}
+
+
 {% block tablero %}
     <div class="z-depth-2">
         <div class="ibox-title">
@@ -9,14 +14,37 @@
                 </div>
             </div>
         </div>
-        <div class="ibox-content">
-           <h2>En construcción</h2>
+        <div class="ibox-content" >
+           <table id="tabla" class="display">
+             <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Entrenador</th>
+                  <th>Ver</th>
+                  <th>Acciones</th>
+                </tr>
+             </thead>
+             <tbody>
+                {% for seleccion in selecciones %}
+                  <tr>
+                    <td>{{seleccion.nombre}}</td>
+                    <td>{{seleccion.profesor.first_name}}</td>
+                    <td><button class="btn btn-primary"><i class="far fa-eye"></i> Ver Equipo</button></td>
+                    <td>
+                      <a href="#"><i class="fa fa-trash"></i></a>   &nbsp
+                      <a href="#"><i class="fa fa-edit"></i></a>
+                    </td>
+                  </tr>
+                {% endfor %}
+             </tbody>
+           </table>
         </div>
     </div>
 {% endblock %}
 
 {% block scriptsFile %}
- <script type="text/javascript">
-
- </script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+  <script type="text/javascript">
+    $('#tabla').DataTable();
+  </script>
 {% endblock %}

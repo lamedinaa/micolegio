@@ -1,0 +1,54 @@
+{% extends 'bases/tableros/scriptsBoard.html' %}
+{% load staticfiles %}
+
+{% block menuCss %}
+    <style media="screen">
+        .img-perfil {
+            width: 50%
+        }
+    </style>
+{% endblock %}
+
+{% block menu %}
+<div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element ">
+                      <span>
+                          {% for colegio in user.perfil.escuela.all %}
+                              <h3><strong  style="color:#FDFEFE;">{{ colegio.nombre }} </strong></h3>
+                          {% endfor %}
+                      </span>
+                    </div>
+                </li>
+                <li id="home">
+                    <a href=""><i class="fa fa-th-large"></i> <span class="nav-label">Home</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li id="inicio"><a href="/director/inicio/"><i class="fa fa-coffee"></i>Inicio</a></li>
+                    </ul>
+                </li>
+                <li id="administracion" >
+                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Registros</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li id="listaEscuelas"><a href="/admin/listaescuelas/"><i class="fa fa-soccer-ball-o"></i>Lista Escuelas</a></li>
+                        <li id="listaDirectores"><a href="/admin/listadirectores/"><i class="fa fa-soccer-ball-o"></i>Lista Directores</a></li>
+                        <li id="registroEscuela"><a href="/admin/registrarescuela/"><i class="fa fa-child"></i>Registrar Escuela</a></li>
+                        <li id="registroDirectores"><a href="/admin/registrardirector/"><i class="fa fa-soccer-ball-o"></i>Registra Director</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        {% block nav %}{% endblock %}
+        <br>
+        {% block tablero %} {% endblock %}
+    </div>
+</div>
+
+
+{% endblock %}
